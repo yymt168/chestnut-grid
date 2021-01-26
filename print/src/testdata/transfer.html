@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="module">
+    import testData from "./test-data-0810-tietou.js";
+
+    let cellObject={fixes:[],binds:[]};
+    for(let cell of testData.module.cells){
+        let {range,alignment,font,bind,text}=cell;
+        if(bind){
+            if(!bind.name.startsWith('z')){
+                cellObject.binds.push([range,[[bind.name]],alignment,font]);
+            }
+        }else{
+            cellObject.fixes.push([range,text,alignment,font]);
+        }
+    }
+    console.log('------------cellObject fixes---------');
+    console.log(JSON.stringify(cellObject.fixes));
+
+    console.log('------------cellObject binds---------');
+    console.log(JSON.stringify(cellObject.binds));
+
+    let lines=[];
+    for(let line of testData.module.lines.rows){
+         //{"rowStart": 1, "colStart": 10, "colEnd": 11, "width": 1}
+        if(1==line.width){
+            lines.push([line.rowStart,line.colStart,line.rowStart,line.colEnd]);
+        }else{
+            lines.push([line.rowStart,line.colStart,line.rowStart,line.colEnd,line.width]);
+        }
+    }
+
+    for(let line of testData.module.lines.cols){
+        //{"colStart": 1, "rowStart": 8, "rowEnd": 28, "width": 1}
+        if(1==line.width){
+            lines.push([line.rowStart,line.colStart,line.rowEnd,line.colStart]);
+        }else{
+            lines.push([line.rowStart,line.colStart,line.rowEnd,line.colStart,line.width]);
+        }
+    }
+    console.log('------------lines---------');
+    console.log(JSON.stringify(lines));
+</script>
+</body>
+</html>

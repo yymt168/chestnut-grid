@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+}
+
+.chestnut-grid{
+  display: grid;
+  page-break-after: always;
+  /*overflow: hidden;*/
+}
+
+.chestnut-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.chestnut-grid >div{
+  border-style: solid;
+  border-color: black;
+  border-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+  text-align: center;
+}
+
+.chestnut-grid div[contenteditable=true]{
+  cursor: cell;
+}
+.chestnut-grid div[data-editable='0']{
+  cursor: not-allowed;
+}
+
+.chestnut-grid-edit >div.chestnut-editable{
+  cursor: cell;
+}
+
+.chestnut-grid-edit >div.chestnut-readyonly{
+  cursor: not-allowed;
+  background-color: aliceblue;
+}
+
+@media print {
+  .print-hidden {
+    display: none;
+  }
+}
