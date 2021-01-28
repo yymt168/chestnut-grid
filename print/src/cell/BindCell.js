@@ -5,18 +5,19 @@
  */
 import genGridAreaStyle from "../style/genGridAreaStyle";
 import genAlignmentStyle from "../style/genAlignmentStyle";
-import genFontStyle from "../style/genFontStyle";
+import genBindValue from "./genBindValue";
 
 //bindInfo:[[bindName1,bindName2,...],'formatFunctionName,YYmmDD']
 function BindCell(props) {
-    let [range,bindInfo,alignment,font,isHtml]=props.cell;
-    let style={};
-    Object.assign(style,genGridAreaStyle(...range));
-    Object.assign(style,genAlignmentStyle(alignment));
-    Object.assign(style,genFontStyle(font));
+    let recordData=props.recordData;
+    let [range,bindInfo,alignment,style,isHtml]=props.cell;
+    let computedStyle=Object.assign({},style);
+    Object.assign(computedStyle,genGridAreaStyle(...range));
+    Object.assign(computedStyle,genAlignmentStyle(alignment));
 
-    let result= !isHtml?<div style={style}>{bindInfo[0][0]}</div>:
-        <div style={style}  dangerouslySetInnerHTML={{ __html: bindInfo[0][0] }}></div>;
+    let bindValue=genBindValue(bindInfo,recordData);
+    let result= !isHtml?<div style={computedStyle} >{bindValue}</div>:
+        <div style={computedStyle}  dangerouslySetInnerHTML={{ __html: bindValue }}></div>;
     return result;
 }
 

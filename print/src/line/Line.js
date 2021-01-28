@@ -1,12 +1,16 @@
 import RowLine from "./RowLine";
 import ColLine from "./ColLine";
+import genLines from "./genLines";
+import {useMemo} from "react";
 
 function Line(props) {
-  let lines=props.lines;
+  let linesData=props.lines;
+  let genLinesData=props.genLines;
+  let allLines=useMemo(()=>genLines(genLinesData).concat(linesData),[linesData,genLinesData]);
   return (
       <>
         {
-          lines.map(line=>{
+          allLines.map(line=>{
               let [rowStart,colStart,rowEnd,colEnd]=line;
               let key=`Line-${rowStart}-${colStart}-${rowEnd}-${colEnd}`;
               if(rowStart===rowEnd){

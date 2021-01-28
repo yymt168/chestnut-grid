@@ -26,8 +26,11 @@
   -moz-box-sizing:border-box; /* Firefox */
   -webkit-box-sizing:border-box; /* Safari */
   text-align: center;
+  overflow-wrap: break-word;
 }
-
+/*-webkit-user-modify: read-write;*/
+/*overflow-wrap: break-word;*/
+/*-webkit-line-break: after-white-space;*/
 .chestnut-grid div[contenteditable=true]{
   cursor: cell;
 }

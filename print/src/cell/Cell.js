@@ -10,6 +10,7 @@ import {useMemo} from 'react';
 
 function Cell(props) {
     let cells=props.cells;
+    let recordData=props.recordData;
     let bindsData=cells.binds;
     let genBindsData=cells.genBinds;
     let allBinds=useMemo(()=>genBinds(genBindsData).concat(bindsData),[bindsData,genBindsData]);
@@ -19,7 +20,7 @@ function Cell(props) {
                 cells.fixes.map(cell=><FixCell cell={cell} key={'fix-'+cell[0].join('-')}/>)
             }
             {
-                allBinds.map(cell=><BindCell cell={cell} key={'bind-'+cell[0].join('-')}/>)
+                allBinds.map(cell=><BindCell cell={cell} recordData={recordData} key={'bind-'+cell[0].join('-')}/>)
             }
         </>
     );

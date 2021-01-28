@@ -16,7 +16,9 @@ function App() {
         window.postMessage({type:'grid-report-records',records:testRecords},'*');
         return ()=> window.removeEventListener('message',msgEvtListener);
     },[]);
-
+    let text='<div data-bind-name="bindName"></div>';
+    let test=<div  dangerouslySetInnerHTML={{ __html: text }}></div>;
+    console.log(test);
     return (
         <>
             {
