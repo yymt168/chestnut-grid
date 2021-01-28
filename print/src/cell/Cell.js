@@ -13,6 +13,7 @@ function Cell(props) {
     let recordData=props.recordData;
     let bindsData=cells.binds;
     let genBindsData=cells.genBinds;
+    let fns=props.fns;
     let allBinds=useMemo(()=>genBinds(genBindsData).concat(bindsData),[bindsData,genBindsData]);
     return (
         <>
@@ -20,7 +21,7 @@ function Cell(props) {
                 cells.fixes.map(cell=><FixCell cell={cell} key={'fix-'+cell[0].join('-')}/>)
             }
             {
-                allBinds.map(cell=><BindCell cell={cell} recordData={recordData} key={'bind-'+cell[0].join('-')}/>)
+                allBinds.map(cell=><BindCell cell={cell} fns={fns} recordData={recordData} key={'bind-'+cell[0].join('-')}/>)
             }
         </>
     );

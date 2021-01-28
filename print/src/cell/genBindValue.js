@@ -6,7 +6,7 @@
 //[[bindName1,bindName2,...],'formatFunctionName,YYmmDD']
 //formatFunctionName(recordData[bindName1],recordData[bindName2],...,'YYmmDD')
 
-function genBindValue(bindInfo,recordData,fns) {
+function genBindValue(bindInfo,fns,recordData) {
     let bindValue;
     let bindNames=bindInfo[0];
     if(1===bindInfo.length){
@@ -14,6 +14,7 @@ function genBindValue(bindInfo,recordData,fns) {
     }else if(2===bindInfo.length){
         let fmtStr=bindInfo[1].split(',');
         let fn=fns[fmtStr[0]];
+
         if(fn){
             let params=[];
             for(let i=0;i<bindNames.length;i++){

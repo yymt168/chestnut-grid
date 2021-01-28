@@ -3,6 +3,7 @@
  * @Date 2021/1/26 16:32
  * @Version 1.0
  */
+import fmtDateValue from "./fmtDateValue";
 
 function dateTimeFormat(date, fmt){
     let o = {
@@ -23,21 +24,8 @@ function dateTimeFormat(date, fmt){
 }
 
 function fmtDate(date,fmt,nullValue='') {
-    let result=nullValue;
-    if(typeof date==='string'){
-        date=date.trim();
-    }
-    if(date){
-        if(!isNaN(date)){
-            date=Number(date);
-        }
-        date=new Date(date);
-        if(!isNaN(+date)){
-            result=dateTimeFormat(date,fmt);
-        }
-    }
-    return result;
-
+    let value=fmtDateValue(date);
+    return value?dateTimeFormat(value,fmt):nullValue;
 }
 
 export default fmtDate;
